@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+}
+
+body {
+    font-size: 24px;
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 7%, #B721FF 68%);
+;
+}
+
+h2 {
+    font-size: 28px
+}
+
+#drum-machine {
+    margin: 15px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+    padding: 10px;
+    grid-gap: 15px;
+    margin-top: 40px;
+    border-radius: 15px;
+    grid-template-columns: 1fr;
+    background-color: #5d7481;
+}
+
+.keyboard {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.keyboard .drum-pad {
+    width: 100%;
+    height: 80px;
+    outline: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: rgb(46, 72, 105);
+    background: linear-gradient(270deg, rgb(46, 72, 105) 1%, rgb(80, 40, 75) 96%);
+    transition: all .3s ease-in-out;
+    box-shadow: 0 0 50px rgba(255,255,255,0.5);
+}
+
+.keyboard .drum-pad:active {
+    box-shadow: 0 0 200px rgba(255,255,255,1);
+}
+
+
+@media(min-width: 768px){
+    .wrapper {
+        width: 680px;
+    }
+}
+
+@media(min-width: 992px){
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.controle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.controle > button,
+.controle > input,
+.controle > h2{
+    margin-bottom: 10px
+}
+
+.controle button{
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #1c1b1b 7%, #B721FF 68%);
+
+}
+
+h1 {
+    background-color: #B721FF;
+    color: #21D4FD;
+}
