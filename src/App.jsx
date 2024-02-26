@@ -60,9 +60,7 @@ const soundsGroup = [
 const KeyboardKey = ({ play, deactivateAudio, sound: { id, key, url, keyCode } }) => {
     const handleKeydown = (e) => {
         if(keyCode === e.keyCode) {
-            const audio = document.getElementById(key);
             play(key, id);
-            deactivateAudio(audio)
         }
     }
     useEffect(() => {
@@ -78,10 +76,7 @@ const KeyboardKey = ({ play, deactivateAudio, sound: { id, key, url, keyCode } }
 
 const Keyboard = ({ sounds, play, power, deactivateAudio }) =>  (
     <div className="keyboard">
-        {power
-            ? sounds.map((sound) => <KeyboardKey key={sound.key} sound={sound} play={play} deactivateAudio={deactivateAudio} />)
-            : sounds.map((sound) => <KeyboardKey key={sound.key} sound={{...sound, url: "#" }} play={play} deactivateAudio={deactivateAudio} />)
-        }
+        {sounds.map((sound) => <KeyboardKey key={sound.key} sound={sound} play={play} />)}
     </div>
 );
 
@@ -117,13 +112,17 @@ const App = () => {
         }, 300)
     }
 
-    const play = (key, soundsGroup) => {
-        setSoundName(soundsGroup)
+    const play = (key, sound) => {
+        if (!power) {
+            return;
+        }
+        setSoundName(sound.id);
         const audio = document.getElementById(key);
+        audio.volume = volume;
         styleActiveKey(audio);
         audio.currentTime = 0;
         audio.play();
-        desactivateAudio(audio)
+        desactivateAudio(audio);
     }
 
     const stop = () => {
@@ -138,7 +137,7 @@ const App = () => {
         <div id="drum-machine">
             <h1>DRUM POWER MACHINE</h1>
             <div className="wrapper">
-                <Keyboard sounds={soundsGroup} play={play} power={power} desactivateAudio={desactivateAudio} />
+                <Keyboard sounds={soundsGroup} play={play} power={power} />
                 <DumControle
                     stop={stop}
                     power={power}
@@ -152,3 +151,4 @@ const App = () => {
 };
 
 export default App;
+
